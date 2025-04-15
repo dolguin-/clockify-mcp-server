@@ -9,7 +9,6 @@ This MCP Server integrates with AI Tools to manage your time entries in Clockify
 - Delete time entry tool
 - Edit time entry tool
 - Get another user time entries tool
-- Publish to smithery
 
 ## Using in Claude Desktop
 
