@@ -3,7 +3,11 @@ dotenv.config();
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { SERVER_CONFIG } from "./config/api";
-import { createEntryTool } from "./tools/entries";
+import {
+  createEntryTool,
+  deleteEntryTool,
+  editEntryTool,
+} from "./tools/entries";
 import { findProjectTool } from "./tools/projects";
 import { getCurrentUserTool } from "./tools/users";
 import { findWorkspacesTool } from "./tools/workspaces";
@@ -34,6 +38,20 @@ server.tool(
   findWorkspacesTool.name,
   findWorkspacesTool.description,
   findWorkspacesTool.handler
+);
+
+server.tool(
+  deleteEntryTool.name,
+  deleteEntryTool.description,
+  deleteEntryTool.parameters,
+  deleteEntryTool.handler
+);
+
+server.tool(
+  editEntryTool.name,
+  editEntryTool.description,
+  editEntryTool.parameters,
+  editEntryTool.handler
 );
 
 const transport = new StdioServerTransport();

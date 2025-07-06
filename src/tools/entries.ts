@@ -1,7 +1,14 @@
 import { z } from "zod";
 import { TOOLS_CONFIG } from "../config/api";
 import { entriesService } from "../clockify-sdk/entries";
-import { McpResponse, McpToolConfig, TCreateEntrySchema, TFindEntrySchema } from "../types";
+import {
+  McpResponse,
+  McpToolConfig,
+  TCreateEntrySchema,
+  TFindEntrySchema,
+  TDeleteEntrySchema,
+  TEditEntrySchema,
+} from "../types";
 
 export const createEntryTool: McpToolConfig = {
   name: TOOLS_CONFIG.entries.create.name,
@@ -27,7 +34,7 @@ export const createEntryTool: McpToolConfig = {
     try {
       const result = await entriesService.create(params);
 
-      const entryInfo = `Registro inserido com sucesso. ID: ${result.data.id} Nome: ${result.data.description}`;
+      const entryInfo = `Time entry created successfully. ID: ${result.data.id} Name: ${result.data.description}`;
 
       return {
         content: [
@@ -94,6 +101,84 @@ export const listEntriesTool: McpToolConfig = {
       };
     } catch (error: any) {
       throw new Error(`Failed to retrieve entries: ${error.message}`);
+    }
+  },
+};
+
+export const deleteEntryTool: McpToolConfig = {
+  name: TOOLS_CONFIG.entries.delete.name,
+  description: TOOLS_CONFIG.entries.delete.description,
+  parameters: {
+    workspaceId: z
+      .string()
+      .describe("The id of the workspace where the time entry is located"),
+    timeEntryId: z.string().describe("The id of the time entry to be deleted"),
+  },
+  handler: async (params: TDeleteEntrySchema): Promise<McpResponse> => {
+    try {
+      await entriesService.deleteEntry(params);
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: `Time entry with ID ${params.timeEntryId} was deleted successfully.`,
+          },
+        ],
+      };
+    } catch (error: any) {
+      throw new Error(`Failed to delete entry: ${error.message}`);
+    }
+  },
+};
+
+export const editEntryTool: McpToolConfig = {
+  name: TOOLS_CONFIG.entries.edit.name,
+  description: TOOLS_CONFIG.entries.edit.description,
+  parameters: {
+    workspaceId: z
+      .string()
+      .describe("The id of the workspace where the time entry is located"),
+    timeEntryId: z.string().describe("The id of the time entry to be edited"),
+    billable: z.boolean().describe("If the task is billable or not").optional(),
+    description: z
+      .string()
+      .describe("The description of the time entry")
+      .optional(),
+    start: z.coerce.date().describe("The start of the time entry").optional(),
+    end: z.coerce.date().describe("The end of the time entry").optional(),
+    projectId: z
+      .string()
+      .optional()
+      .describe("The id of the project associated with this time entry"),
+  },
+  handler: async (params: TEditEntrySchema): Promise<McpResponse> => {
+    let start = params.start;
+    const current = await entriesService.getById(
+      params.workspaceId,
+      params.timeEntryId
+    );
+    try {
+      if (!start) {
+        start = new Date(current.data.timeInterval.start);
+      }
+      const result = await entriesService.update({
+        ...params,
+        start,
+      });
+
+      const entryInfo = `Time entry updated successfully. ID: ${result.data.id} Name: ${result.data.description}`;
+
+      return {
+        content: [
+          {
+            type: "text",
+            text: entryInfo,
+          },
+        ],
+      };
+    } catch (error: any) {
+      throw new Error(`Failed to edit entry: ${error.message}`);
     }
   },
 };
