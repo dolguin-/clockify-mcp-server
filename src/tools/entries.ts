@@ -153,13 +153,13 @@ export const editEntryTool: McpToolConfig = {
       .describe("The id of the project associated with this time entry"),
   },
   handler: async (params: TEditEntrySchema): Promise<McpResponse> => {
-    let start = params.start;
-    const current = await entriesService.getById(
-      params.workspaceId,
-      params.timeEntryId
-    );
     try {
+      let start = params.start;
       if (!start) {
+        const current = await entriesService.getById(
+          params.workspaceId,
+          params.timeEntryId
+        );
         start = new Date(current.data.timeInterval.start);
       }
       const result = await entriesService.update({

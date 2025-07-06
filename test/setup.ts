@@ -15,7 +15,7 @@ export async function createMcpClient() {
 
   const client = new Client({
     name: "clockify-test-mcp-client",
-    version: "1.1.0",
+    version: "1.1.1",
   });
 
   await client.connect(transport);

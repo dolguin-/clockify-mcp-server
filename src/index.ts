@@ -7,6 +7,7 @@ import {
   createEntryTool,
   deleteEntryTool,
   editEntryTool,
+  listEntriesTool,
 } from "./tools/entries";
 import { findProjectTool } from "./tools/projects";
 import { getCurrentUserTool } from "./tools/users";
@@ -26,6 +27,13 @@ server.tool(
   findProjectTool.description,
   findProjectTool.parameters,
   findProjectTool.handler
+);
+
+server.tool(
+  listEntriesTool.name,
+  listEntriesTool.description,
+  listEntriesTool.parameters,
+  listEntriesTool.handler
 );
 
 server.tool(
