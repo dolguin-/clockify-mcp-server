@@ -1,6 +1,11 @@
 import { AxiosInstance } from "axios";
 import { api } from "../config/api";
-import { TCreateEntrySchema, TFindEntrySchema } from "../types";
+import {
+  TCreateEntrySchema,
+  TFindEntrySchema,
+  TDeleteEntrySchema,
+  TEditEntrySchema,
+} from "../types";
 import { URLSearchParams } from "node:url";
 
 function EntriesService(api: AxiosInstance) {
@@ -33,7 +38,30 @@ function EntriesService(api: AxiosInstance) {
     );
   }
 
-  return { create, find };
+  async function deleteEntry(params: TDeleteEntrySchema) {
+    return api.delete(
+      `workspaces/${params.workspaceId}/time-entries/${params.timeEntryId}`
+    );
+  }
+
+  async function update(params: TEditEntrySchema) {
+    const body = {
+      ...params,
+      workspaceId: undefined,
+      timeEntryId: undefined,
+    };
+
+    return api.put(
+      `workspaces/${params.workspaceId}/time-entries/${params.timeEntryId}`,
+      body
+    );
+  }
+
+  async function getById(workspaceId: string, timeEntryId: string) {
+    return api.get(`workspaces/${workspaceId}/time-entries/${timeEntryId}`);
+  }
+
+  return { create, find, deleteEntry, update, getById };
 }
 
 export const entriesService = EntriesService(api);

@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { CreateEntrySchema } from "../validation/entries/create-entry-schema";
 import { FindEntrySchema } from "../validation/entries/find-entry-schema";
+import { DeleteEntrySchema } from "../validation/entries/delete-entry-schema";
+import { EditEntrySchema } from "../validation/entries/edit-entry-schema";
 import {
   ReadResourceTemplateCallback,
   ResourceMetadata,
@@ -11,6 +13,10 @@ import { FindProjectSchema } from "../validation/projects/find-project-schema";
 export type TCreateEntrySchema = z.infer<typeof CreateEntrySchema>;
 
 export type TFindEntrySchema = z.infer<typeof FindEntrySchema>;
+
+export type TDeleteEntrySchema = z.infer<typeof DeleteEntrySchema>;
+
+export type TEditEntrySchema = z.infer<typeof EditEntrySchema>;
 
 export type TFindProjectSchema = z.infer<typeof FindProjectSchema>;
 

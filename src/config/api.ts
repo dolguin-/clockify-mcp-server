@@ -46,5 +46,13 @@ export const TOOLS_CONFIG = {
       name: "list-time-entries",
       description: "Get registered time entries from a workspace",
     },
+    delete: {
+      name: "delete-time-entry",
+      description: "Delete a specific time entry from a workspace",
+    },
+    edit: {
+      name: "edit-time-entry",
+      description: "Edit an existing time entry in a workspace",
+    },
   },
 };

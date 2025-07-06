@@ -6,9 +6,7 @@ This MCP Server integrates with AI Tools to manage your time entries in Clockify
 
 ## Next implementations
 
-- Delete time entry tool
-- Edit time entry tool
-- Get another user time entries tool
+- Implement tags for entries
 
 ## Using in Claude Desktop
 
@@ -21,6 +19,7 @@ npx -y @smithery/cli install @https-eduardo/clockify-mcp-server --client claude
 ```
 
 ### Installing Manually
+
 First, install ts-node globally
 
 `npm i -g ts-node`

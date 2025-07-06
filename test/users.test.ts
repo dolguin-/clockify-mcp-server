@@ -16,7 +16,6 @@ describe("Users MCP Tests", async () => {
     })) as McpResponse;
 
     const user: ClockifyUser = JSON.parse(response.content[0].text as string);
-    console.log(user.id);
     assert(user.id === TEST_USER_ID);
   });
 });
