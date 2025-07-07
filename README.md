@@ -20,9 +20,9 @@ npx -y @smithery/cli install @https-eduardo/clockify-mcp-server --client claude
 
 ### Installing Manually
 
-First, install ts-node globally
+First, install tsx globally
 
-`npm i -g ts-node`
+`npm i -g tsx`
 
 Then insert the MCP server in `claude_desktop_config`
 
@@ -30,8 +30,8 @@ Then insert the MCP server in `claude_desktop_config`
 {
   "mcpServers": {
     "clockify-time-entries": {
-      "command": "ts-node",
-      "args": ["ABSOLUTE_PATH/src/index.ts"],
+      "command": "tsx",
+      "args": ["ABSOLUTE_PATH/src/index.ts", "--local"],
       "env": {
         "CLOCKIFY_API_URL": "https://api.clockify.me/api/v1",
         "CLOCKIFY_API_TOKEN": "YOUR_CLOCKIFY_API_TOKEN_HERE"
@@ -40,5 +40,3 @@ Then insert the MCP server in `claude_desktop_config`
   }
 }
 ```
-
-You can also compile the Typescript code using `tsc` and then change the config to use default `node` command and point to the `js` file.

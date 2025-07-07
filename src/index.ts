@@ -12,56 +12,77 @@ import {
 import { findProjectTool } from "./tools/projects";
 import { getCurrentUserTool } from "./tools/users";
 import { findWorkspacesTool } from "./tools/workspaces";
+import { z } from "zod";
+import { argv } from "process";
+
+export const configSchema = z.object({
+  clockifyApiToken: z.string().describe("Clockify API Token"),
+});
 
 const server = new McpServer(SERVER_CONFIG);
 
-server.tool(
-  createEntryTool.name,
-  createEntryTool.description,
-  createEntryTool.parameters,
-  createEntryTool.handler
-);
+export default function createStatelessServer({
+  config,
+}: {
+  config: z.infer<typeof configSchema>;
+}) {
+  server.tool(
+    createEntryTool.name,
+    createEntryTool.description,
+    createEntryTool.parameters,
+    createEntryTool.handler
+  );
 
-server.tool(
-  findProjectTool.name,
-  findProjectTool.description,
-  findProjectTool.parameters,
-  findProjectTool.handler
-);
+  server.tool(
+    findProjectTool.name,
+    findProjectTool.description,
+    findProjectTool.parameters,
+    findProjectTool.handler
+  );
 
-server.tool(
-  listEntriesTool.name,
-  listEntriesTool.description,
-  listEntriesTool.parameters,
-  listEntriesTool.handler
-);
+  server.tool(
+    listEntriesTool.name,
+    listEntriesTool.description,
+    listEntriesTool.parameters,
+    listEntriesTool.handler
+  );
 
-server.tool(
-  getCurrentUserTool.name,
-  getCurrentUserTool.description,
-  getCurrentUserTool.handler
-);
+  server.tool(
+    getCurrentUserTool.name,
+    getCurrentUserTool.description,
+    getCurrentUserTool.handler
+  );
 
-server.tool(
-  findWorkspacesTool.name,
-  findWorkspacesTool.description,
-  findWorkspacesTool.handler
-);
+  server.tool(
+    findWorkspacesTool.name,
+    findWorkspacesTool.description,
+    findWorkspacesTool.handler
+  );
 
-server.tool(
-  deleteEntryTool.name,
-  deleteEntryTool.description,
-  deleteEntryTool.parameters,
-  deleteEntryTool.handler
-);
+  server.tool(
+    deleteEntryTool.name,
+    deleteEntryTool.description,
+    deleteEntryTool.parameters,
+    deleteEntryTool.handler
+  );
 
-server.tool(
-  editEntryTool.name,
-  editEntryTool.description,
-  editEntryTool.parameters,
-  editEntryTool.handler
-);
+  server.tool(
+    editEntryTool.name,
+    editEntryTool.description,
+    editEntryTool.parameters,
+    editEntryTool.handler
+  );
+  return server.server;
+}
 
-const transport = new StdioServerTransport();
-
-server.connect(transport);
+(() => {
+  if (argv.find((flag) => flag === "--local")) {
+    createStatelessServer({
+      config: {
+        clockifyApiToken: process.env.CLOCKIFY_API_TOKEN as string,
+      },
+    });
+    const transport = new StdioServerTransport();
+    server.connect(transport);
+  }
+})();
