@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { SERVER_CONFIG } from "./config/api";
+import { api, SERVER_CONFIG } from "./config/api";
 import {
   createEntryTool,
   deleteEntryTool,
@@ -26,6 +26,7 @@ export default function createStatelessServer({
 }: {
   config: z.infer<typeof configSchema>;
 }) {
+  api.defaults.headers.Authorization = `Bearer ${config.clockifyApiToken}`;
   server.tool(
     createEntryTool.name,
     createEntryTool.description,

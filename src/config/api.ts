@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: process.env.CLOCKIFY_API_URL,
+  baseURL: process.env.CLOCKIFY_API_URL || 'https://api.clockify.me/api/v1',
   headers: {
     "X-Api-Key": `${process.env.CLOCKIFY_API_TOKEN}`,
   },
