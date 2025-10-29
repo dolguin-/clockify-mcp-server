@@ -29,7 +29,7 @@ describe("Users MCP Tests", async () => {
 
     assert(response.content[0].text);
     assert(response.content[0].text.includes("Users in workspace"));
-    
+
     const users = JSON.parse(response.content[0].text.split('\n')[1]);
     assert(Array.isArray(users));
     assert(users.length > 0);
