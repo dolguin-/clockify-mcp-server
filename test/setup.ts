@@ -9,8 +9,9 @@ export const TEST_PROJECT_ID = process.env.TEST_PROJECT_ID;
 
 export async function createMcpClient() {
   const transport = new StdioClientTransport({
-    command: "ts-node",
+    command: "tsx",
     args: ["src/index.ts"],
+    env: process.env,
   });
 
   const client = new Client({
