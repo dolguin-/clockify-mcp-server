@@ -11,6 +11,7 @@ import {
 import { FindProjectSchema } from "../validation/projects/find-project-schema";
 import { FindTasksSchema } from "../validation/tasks/find-tasks-schema";
 import { FindUsersSchema } from "../validation/users/find-users-schema";
+import { reportSchema } from "../validation/reports/report-schema";
 
 export type TCreateEntrySchema = z.infer<typeof CreateEntrySchema>;
 
@@ -25,6 +26,8 @@ export type TFindProjectSchema = z.infer<typeof FindProjectSchema>;
 export type TFindTasksSchema = z.infer<typeof FindTasksSchema>;
 
 export type TFindUsersSchema = z.infer<typeof FindUsersSchema>;
+
+export type TReportSchema = z.infer<typeof reportSchema>;
 
 export interface ClockifyWorkspace {
   id: string;
