@@ -6,7 +6,11 @@ function UsersService(api: AxiosInstance) {
     return api.get("user");
   }
 
-  return { getCurrent };
+  async function fetchByWorkspace(workspaceId: string) {
+    return api.get(`workspaces/${workspaceId}/users`);
+  }
+
+  return { getCurrent, fetchByWorkspace };
 }
 
 export const usersService = UsersService(api);

@@ -42,6 +42,11 @@ export const TOOLS_CONFIG = {
       description:
         "Get the current user id and name, to search for entries is required to have the user id",
     },
+    list: {
+      name: "get-workspace-users",
+      description:
+        "Get all users from a workspace",
+    },
   },
   entries: {
     create: {
