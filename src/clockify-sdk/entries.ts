@@ -12,7 +12,6 @@ function EntriesService(api: AxiosInstance) {
   async function create(entry: TCreateEntrySchema) {
     const body = {
       ...entry,
-      workspaceId: undefined,
     };
 
     return api.post(`workspaces/${entry.workspaceId}/time-entries`, body);
