@@ -10,6 +10,7 @@ import {
   listEntriesTool,
 } from "./tools/entries";
 import { findProjectTool } from "./tools/projects";
+import { findTasksTool } from "./tools/tasks";
 import { getCurrentUserTool } from "./tools/users";
 import { findWorkspacesTool } from "./tools/workspaces";
 import { z } from "zod";
@@ -72,6 +73,13 @@ export default function createStatelessServer({
     editEntryTool.description,
     editEntryTool.parameters,
     editEntryTool.handler
+  );
+
+  server.tool(
+    findTasksTool.name,
+    findTasksTool.description,
+    findTasksTool.parameters,
+    findTasksTool.handler
   );
   return server.server;
 }

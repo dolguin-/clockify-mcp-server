@@ -29,6 +29,13 @@ export const TOOLS_CONFIG = {
         "Get workspace projects id and name, the projects can be associated with time entries",
     },
   },
+  tasks: {
+    list: {
+      name: "get-project-tasks",
+      description:
+        "Get tasks from a specific project in a workspace",
+    },
+  },
   users: {
     current: {
       name: "get-current-user",
