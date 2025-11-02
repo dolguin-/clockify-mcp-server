@@ -26,13 +26,21 @@ export const getReportsTool: McpToolConfig = {
         const start = new Date(entry.timeInterval.start).toLocaleString();
         const end = entry.timeInterval.end ? new Date(entry.timeInterval.end).toLocaleString() : 'Running';
         const duration = entry.timeInterval.duration || 'N/A';
-        const project = entry.projectName || 'No project';
-        const description = entry.description || 'No description';
 
-        reportText += `${index + 1}. ${description}\n`;
-        reportText += `   Project: ${project}\n`;
+        reportText += `${index + 1}. ${entry.description || 'No description'}\n`;
+        reportText += `   Project: ${entry.projectName || 'No project'}\n`;
+        reportText += `   User: ${entry.userName || 'Unknown'}\n`;
+        reportText += `   User Email: ${entry.userEmail || 'N/A'}\n`;
         reportText += `   Time: ${start} - ${end}\n`;
-        reportText += `   Duration: ${duration}\n\n`;
+        reportText += `   Duration: ${duration}\n`;
+        reportText += `   Billable: ${entry.billable ? 'Yes' : 'No'}\n`;
+        reportText += `   Tags: ${entry.tags?.map((tag: any) => tag.name).join(', ') || 'None'}\n`;
+        reportText += `   Task: ${entry.taskName || 'No task'}\n`;
+        reportText += `   Client: ${entry.clientName || 'No client'}\n`;
+        reportText += `   Project Color: ${entry.projectColor || 'N/A'}\n`;
+        reportText += `   Hourly Rate: ${entry.hourlyRate || 'N/A'}\n`;
+        reportText += `   Amount: ${entry.amount || 'N/A'}\n`;
+        reportText += `   Entry ID: ${entry.id || 'N/A'}\n\n`;
       });
 
       return {
