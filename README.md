@@ -1,6 +1,7 @@
 # Clockify MCP Server
 
 [![smithery badge](https://smithery.ai/badge/@https-eduardo/clockify-mcp-server)](https://smithery.ai/server/@https-eduardo/clockify-mcp-server)
+[![Pre-commit](https://github.com/dolguin-/clockify-mcp-server/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/dolguin-/clockify-mcp-server/actions/workflows/pre-commit.yml)
 
 This MCP Server integrates with AI Tools to manage your time entries in Clockify, so you can register your time entries just sending an prompt to LLM.
 
