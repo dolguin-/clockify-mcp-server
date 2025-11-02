@@ -13,6 +13,7 @@ import { findProjectTool } from "./tools/projects";
 import { findTasksTool } from "./tools/tasks";
 import { getCurrentUserTool, findWorkspaceUsersTool } from "./tools/users";
 import { findWorkspacesTool } from "./tools/workspaces";
+import { getReportsTool } from "./tools/reports";
 import { z } from "zod";
 import { argv } from "process";
 
@@ -88,6 +89,14 @@ export default function createStatelessServer({
     findWorkspaceUsersTool.parameters,
     findWorkspaceUsersTool.handler
   );
+
+  server.tool(
+    getReportsTool.name,
+    getReportsTool.description,
+    getReportsTool.parameters,
+    getReportsTool.handler
+  );
+
   return server.server;
 }
 
