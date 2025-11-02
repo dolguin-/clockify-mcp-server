@@ -67,4 +67,10 @@ export const TOOLS_CONFIG = {
       description: "Edit an existing time entry in a workspace",
     },
   },
+  reports: {
+    detailed: {
+      name: "get-detailed-reports",
+      description: "Get detailed time entry reports with advanced filtering options including date ranges, projects, users, and more",
+    },
+  },
 };
