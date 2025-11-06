@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "npx @smithery/cli dev",
     "build": "npx @smithery/cli build",
-    "test": "node --test test/**/*.test.ts",
+    "test": "node --test $(find test -name '*.test.ts')",
     "prepare": "pre-commit install"
   },
   "license": "MIT",
