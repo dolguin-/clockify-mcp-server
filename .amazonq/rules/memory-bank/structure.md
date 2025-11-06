@@ -5,6 +5,7 @@
 ### `/src/` - Core Application Code
 - **`index.ts`** - Main MCP server entry point and tool registration
 - **`config/api.ts`** - API configuration and environment setup
+- **`config/logger.ts`** - Configurable logging utility with DEBUG flag
 - **`types/index.ts`** - TypeScript type definitions and interfaces
 
 ### `/src/clockify-sdk/` - Clockify API Integration
@@ -12,12 +13,16 @@
 - **`projects.ts`** - Project management API calls
 - **`users.ts`** - User information retrieval
 - **`workspaces.ts`** - Workspace management operations
+- **`reports.ts`** - Reports API integration
+- **`scheduling.ts`** - Project assignments API operations
 
 ### `/src/tools/` - MCP Tool Implementations
 - **`entries.ts`** - Time entry MCP tools (create, edit, delete, list)
 - **`projects.ts`** - Project-related MCP tools
 - **`users.ts`** - User information MCP tools
 - **`workspaces.ts`** - Workspace MCP tools
+- **`reports.ts`** - Reports MCP tools
+- **`scheduling.ts`** - Project assignments MCP tools
 
 ### `/src/validation/` - Input Validation Schemas
 - **`entries/`** - Time entry validation schemas
@@ -27,6 +32,10 @@
   - `find-entry-schema.ts` - Entry search validation
 - **`projects/`** - Project validation schemas
   - `find-project-schema.ts` - Project search validation
+- **`reports/`** - Reports validation schemas
+  - `reports-schema.ts` - Detailed reports validation
+- **`scheduling/`** - Scheduling validation schemas
+  - `assignments-schema.ts` - Project assignments validation
 
 ### `/test/` - Test Suite
 - **`entries.test.ts`** - Time entry functionality tests
