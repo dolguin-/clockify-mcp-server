@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "npx @smithery/cli dev",
     "build": "npx @smithery/cli build",
-    "test": "node --import tsx --test test/**/*.test.ts",
+    "test": "node --import tsx --test 'test/**/*.test.ts'",
     "prepare": "pre-commit install"
   },
   "license": "MIT",
