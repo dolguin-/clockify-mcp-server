@@ -78,5 +78,9 @@ export const TOOLS_CONFIG = {
       name: "get-project-assignments",
       description: "Get all scheduled assignments for a specific project in a workspace",
     },
+    allAssignments: {
+      name: "get-all-assignments",
+      description: "Get all scheduled assignments in a workspace within a date range with pagination support",
+    },
   },
 };

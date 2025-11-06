@@ -13,6 +13,7 @@ import { FindTasksSchema } from "../validation/tasks/find-tasks-schema";
 import { FindUsersSchema } from "../validation/users/find-users-schema";
 import { ReportsSchema } from "../validation/reports/reports-schema";
 import { AssignmentsSchema } from "../validation/scheduling/assignments-schema";
+import { AllAssignmentsSchema } from "../validation/scheduling/all-assignments-schema";
 
 export type TCreateEntrySchema = z.infer<typeof CreateEntrySchema>;
 
@@ -31,6 +32,8 @@ export type TFindUsersSchema = z.infer<typeof FindUsersSchema>;
 export type TReportsSchema = z.infer<typeof ReportsSchema>;
 
 export type TAssignmentsSchema = z.infer<typeof AssignmentsSchema>;
+
+export type TAllAssignmentsSchema = z.infer<typeof AllAssignmentsSchema>;
 
 export interface ClockifyWorkspace {
   id: string;

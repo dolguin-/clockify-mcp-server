@@ -62,4 +62,59 @@ describe("Scheduling MCP Tests", async () => {
     // Verify it contains project information
     assert(text.includes("Project:") || text.includes("No data"));
   });
+
+  it("Get all assignments for a date range", async () => {
+    const startDate = new Date("2025-11-01");
+    const endDate = new Date("2025-11-30");
+
+    const response = (await client.callTool({
+      name: "get-all-assignments",
+      arguments: {
+        workspaceId: TEST_WORKSPACE_ID,
+        start: startDate,
+        end: endDate,
+      },
+    })) as McpResponse;
+
+    assert(response.content[0].text);
+    const text = response.content[0].text as string;
+
+    // Verify response contains assignment information or no assignments message
+    assert(
+      text.includes("Found") ||
+      text.includes("No assignments found")
+    );
+
+    // If assignments found, verify structure
+    if (text.includes("Found")) {
+      assert(text.includes("User ID:") || text.includes("assignment(s)"));
+      assert(text.includes("Tip:"));
+    }
+  });
+
+  it("Get all assignments with pagination", async () => {
+    const startDate = new Date("2025-11-01");
+    const endDate = new Date("2025-11-30");
+
+    const response = (await client.callTool({
+      name: "get-all-assignments",
+      arguments: {
+        workspaceId: TEST_WORKSPACE_ID,
+        start: startDate,
+        end: endDate,
+        page: 1,
+        pageSize: 50,
+      },
+    })) as McpResponse;
+
+    assert(response.content[0].text);
+    const text = response.content[0].text as string;
+    assert(text.length > 0);
+
+    // Verify pagination info is included
+    if (text.includes("Found") && !text.includes("No assignments")) {
+      assert(text.includes("Page 1"));
+      assert(text.includes("50 per page"));
+    }
+  });
 });

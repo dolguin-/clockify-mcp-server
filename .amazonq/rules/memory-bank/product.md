@@ -9,6 +9,7 @@ Clockify MCP Server is a Model Context Protocol (MCP) server that integrates AI 
 - **Workspace Support**: Manage entries across different Clockify workspaces
 - **User Management**: Get current user information and workspace access
 - **Project Assignments**: View scheduled assignments for specific projects
+- **All Assignments**: Retrieve all workspace assignments with pagination support
 - **Detailed Reports**: Generate comprehensive time tracking reports with filtering
 - **AI-Powered Interface**: Natural language interaction through LLM prompts
 - **Billable Time Tracking**: Support for billable/non-billable time categorization
