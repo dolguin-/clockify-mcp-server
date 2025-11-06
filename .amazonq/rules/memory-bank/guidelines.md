@@ -20,6 +20,14 @@
 - **Error Propagation**: Re-throw errors with additional context rather than swallowing them
 - **Type-Safe Error Handling**: Cast errors as `any` when accessing `.message` property
 
+### Logging Standards
+- **Configurable Logger**: Use `logger` from `config/logger.ts` instead of console methods
+- **Debug Logs**: Use `logger.debug()` for development/diagnostic information
+- **Error Logs**: Use `logger.error()` for exceptions and critical failures
+- **Info Logs**: Use `logger.info()` for server lifecycle events
+- **Stderr Output**: All logs write to stderr to avoid interfering with MCP protocol on stdout
+- **DEBUG Flag**: Control logging verbosity via DEBUG environment variable
+
 ## Architectural Patterns
 
 ### Service Layer Pattern
@@ -107,6 +115,7 @@ return {
 
 ### Environment Variables
 - **Required Variables**: CLOCKIFY_API_TOKEN, CLOCKIFY_API_URL
+- **Optional Variables**: DEBUG (true/false) for logging control
 - **Default Values**: Provide sensible defaults where possible
 - **Type Safety**: Validate environment variables through Zod schemas
 - **Local Development**: Support `--local` flag for development mode

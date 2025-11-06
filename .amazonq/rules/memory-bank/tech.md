@@ -40,6 +40,7 @@ npm run build  # Build production bundle
 ## Environment Variables
 - **`CLOCKIFY_API_URL`** - Clockify API endpoint (https://api.clockify.me/api/v1)
 - **`CLOCKIFY_API_TOKEN`** - User's Clockify API authentication token
+- **`DEBUG`** - Enable debug logging (true/false, default: false)
 
 ## Deployment
 - Published to Smithery registry as `@https-eduardo/clockify-mcp-server`
