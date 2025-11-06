@@ -73,4 +73,10 @@ export const TOOLS_CONFIG = {
       description: "Get detailed time entry reports with advanced filtering options including date ranges, projects, users, and more",
     },
   },
+  scheduling: {
+    assignments: {
+      name: "get-project-assignments",
+      description: "Get all scheduled assignments for a specific project in a workspace",
+    },
+  },
 };
