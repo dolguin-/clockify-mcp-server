@@ -14,6 +14,7 @@ import { FindUsersSchema } from "../validation/users/find-users-schema";
 import { ReportsSchema } from "../validation/reports/reports-schema";
 import { AssignmentsSchema } from "../validation/scheduling/assignments-schema";
 import { AllAssignmentsSchema } from "../validation/scheduling/all-assignments-schema";
+import { UserCapacitySchema } from "../validation/scheduling/user-capacity-schema";
 
 export type TCreateEntrySchema = z.infer<typeof CreateEntrySchema>;
 
@@ -34,6 +35,8 @@ export type TReportsSchema = z.infer<typeof ReportsSchema>;
 export type TAssignmentsSchema = z.infer<typeof AssignmentsSchema>;
 
 export type TAllAssignmentsSchema = z.infer<typeof AllAssignmentsSchema>;
+
+export type TUserCapacitySchema = z.infer<typeof UserCapacitySchema>;
 
 export interface ClockifyWorkspace {
   id: string;

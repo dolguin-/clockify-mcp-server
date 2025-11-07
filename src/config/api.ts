@@ -82,5 +82,9 @@ export const TOOLS_CONFIG = {
       name: "get-all-assignments",
       description: "Get all scheduled assignments in a workspace within a date range with pagination support",
     },
+    userCapacity: {
+      name: "get-user-capacity",
+      description: "Get total capacity and working hours for a specific user within a date range",
+    },
   },
 };

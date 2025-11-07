@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { TAssignmentsSchema, TAllAssignmentsSchema } from "../types";
+import { TAssignmentsSchema, TAllAssignmentsSchema, TUserCapacitySchema } from "../types";
 import { api } from "../config/api";
 import { logger } from "../config/logger";
 
@@ -38,7 +38,22 @@ function SchedulingService(api: AxiosInstance) {
     return response.data;
   }
 
-  return { getProjectAssignments, getAllAssignments };
+  async function getUserCapacity(params: TUserCapacitySchema) {
+    const queryParams = new URLSearchParams({
+      start: params.start.toISOString(),
+      end: params.end.toISOString(),
+      page: params.page?.toString() || "1",
+      "page-size": params.pageSize?.toString() || "100",
+    });
+
+    const url = `/workspaces/${params.workspaceId}/scheduling/assignments/users/${params.userId}/totals?${queryParams}`;
+    logger.debug('[SDK] Request URL:', url);
+    const response = await api.get(url);
+    logger.debug('[SDK] Raw API Response:', JSON.stringify(response.data, null, 2));
+    return response.data;
+  }
+
+  return { getProjectAssignments, getAllAssignments, getUserCapacity };
 }
 
 export const schedulingService = SchedulingService(api);
