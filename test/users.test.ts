@@ -28,11 +28,38 @@ describe("Users MCP Tests", async () => {
     })) as McpResponse;
 
     assert(response.content[0].text);
-    assert(response.content[0].text.includes("Users in workspace"));
+    const text = response.content[0].text as string;
+    assert(text.includes("Found"));
+    assert(text.includes("users in workspace"));
+    assert(text.includes("Page 1"));
+    assert(text.includes("50 per page"));
 
-    const users = JSON.parse(response.content[0].text.split('\n')[1]);
+    const jsonStart = text.indexOf('[');
+    const users = JSON.parse(text.substring(jsonStart));
     assert(Array.isArray(users));
     assert(users.length > 0);
-    assert(users.some((user: ClockifyUser) => user.id === TEST_USER_ID));
+    assert(users.length <= 50);
+  });
+
+  it("Get workspace users with pagination", async () => {
+    const response = (await client.callTool({
+      name: "get-workspace-users",
+      arguments: {
+        workspaceId: TEST_WORKSPACE_ID,
+        page: 1,
+        pageSize: 10,
+      },
+    })) as McpResponse;
+
+    assert(response.content[0].text);
+    const text = response.content[0].text as string;
+    assert(text.includes("Found"));
+    assert(text.includes("Page 1"));
+    assert(text.includes("10 per page"));
+
+    const jsonStart = text.indexOf('[');
+    const users = JSON.parse(text.substring(jsonStart));
+    assert(Array.isArray(users));
+    assert(users.length <= 10);
   });
 });
