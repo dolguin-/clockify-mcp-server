@@ -39,10 +39,20 @@ export const findWorkspaceUsersTool: McpToolConfig = {
     workspaceId: z
       .string()
       .describe("The ID of the workspace to get users from"),
+    page: z
+      .number()
+      .optional()
+      .default(1)
+      .describe("Page number for pagination (default: 1)"),
+    pageSize: z
+      .number()
+      .optional()
+      .default(50)
+      .describe("Number of users per page (default: 50, max: 5000)"),
   },
-  handler: async ({ workspaceId }: TFindUsersSchema): Promise<McpResponse> => {
+  handler: async ({ workspaceId, page, pageSize }: TFindUsersSchema): Promise<McpResponse> => {
     try {
-      const response = await usersService.fetchByWorkspace(workspaceId);
+      const response = await usersService.fetchByWorkspace(workspaceId, page, pageSize);
       const users = response.data.map((user: any) => ({
         id: user.id,
         name: user.name,
@@ -53,7 +63,7 @@ export const findWorkspaceUsersTool: McpToolConfig = {
         content: [
           {
             type: "text",
-            text: `Found ${users.length} users in workspace:\n${JSON.stringify(users, null, 2)}`,
+            text: `Found ${users.length} users in workspace (Page ${page}, ${pageSize} per page):\n${JSON.stringify(users, null, 2)}`,
           },
         ],
       };
