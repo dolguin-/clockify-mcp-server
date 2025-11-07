@@ -15,7 +15,7 @@ import { findTasksTool } from "./tools/tasks";
 import { getCurrentUserTool, findWorkspaceUsersTool } from "./tools/users";
 import { findWorkspacesTool } from "./tools/workspaces";
 import { getReportsTool } from "./tools/reports";
-import { getProjectAssignmentsTool, getAllAssignmentsTool } from "./tools/scheduling";
+import { getProjectAssignmentsTool, getAllAssignmentsTool, getUserCapacityTool } from "./tools/scheduling";
 import { z } from "zod";
 import { argv } from "process";
 
@@ -129,6 +129,13 @@ export default function createStatelessServer({
     getAllAssignmentsTool.description,
     getAllAssignmentsTool.parameters,
     wrapHandler(getAllAssignmentsTool.name, getAllAssignmentsTool.handler)
+  );
+
+  server.tool(
+    getUserCapacityTool.name,
+    getUserCapacityTool.description,
+    getUserCapacityTool.parameters,
+    wrapHandler(getUserCapacityTool.name, getUserCapacityTool.handler)
   );
 
   return server.server;
