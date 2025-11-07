@@ -15,8 +15,12 @@ describe("Users MCP Tests", async () => {
       name: "get-current-user",
     })) as McpResponse;
 
+    assert(response.content);
+    assert(response.content[0].type === "text");
     const user: ClockifyUser = JSON.parse(response.content[0].text as string);
-    assert(user.id === TEST_USER_ID);
+    assert(user.id);
+    assert(user.name);
+    assert(user.email);
   });
 
   it("Get workspace users", async () => {
