@@ -8,15 +8,30 @@ This MCP Server integrates with AI Tools to manage your time entries in Clockify
 
 ## Features
 
-- Create, edit, delete, and list time entries
-- Associate time entries with Clockify projects
-- Manage entries across different workspaces
-- Get current user information
-- Support for billable/non-billable time tracking
+- **Time Entry Management**: Create, edit, delete, and list time entries
+- **Project Integration**: Associate time entries with Clockify projects and tasks
+- **Workspace Support**: Manage entries across different workspaces
+- **User Management**: Get current user information and workspace users with pagination
+- **Detailed Reports**: Generate comprehensive time tracking reports with advanced filtering
+- **Scheduling & Capacity**: Track project assignments, milestones, and user capacity
+- **Resource Planning**: View workspace-wide assignments and workload distribution
+- **Billable Time Tracking**: Support for billable/non-billable time categorization
+- **AI-Powered Interface**: Natural language interaction through LLM prompts
 
-## Next implementations
+## 📚 Documentation
+
+- **[Quick Start Guide](./docs/QUICKSTART.md)** - Get started in minutes
+- **[Examples & Use Cases](./docs/EXAMPLES.md)** - Comprehensive prompt examples
+- **[Time Entries Guide](./docs/examples/TIME_ENTRIES.md)** - Managing time entries
+- **[Reports Guide](./docs/examples/REPORTS.md)** - Generating reports and analytics
+- **[Scheduling Guide](./docs/examples/SCHEDULING.md)** - Capacity planning and assignments
+- **[Workspace Management](./docs/examples/WORKSPACE_MANAGEMENT.md)** - Managing workspaces and projects
+
+## Next Implementations
 
 - Implement tags for entries
+- Add time entry templates
+- Support for custom fields
 
 ## Using in Claude Desktop
 
